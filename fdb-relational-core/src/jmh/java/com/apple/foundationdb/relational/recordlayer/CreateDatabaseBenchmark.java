@@ -72,6 +72,9 @@ public class CreateDatabaseBenchmark extends EmbeddedRelationalBenchmark {
     public static class DbNameGenerator {
         private int id = 0;
 
+        // Note: `Thread#getId()` has been deprecated in JDK 19+ in favor of `Thread#threadId()`, but as long as we’re
+        // still targeting Java 11, we need to keep `getId()` and suppress the deprecation warning.
+        @SuppressWarnings("deprecation")
         public String getNextDbName() {
             return "/BENCHMARKS/CreateDatabaseBenchmark_" + Thread.currentThread().getId() + "_" + id++;
         }
