@@ -191,8 +191,8 @@ subprojects {
     apply from: rootProject.file('gradle/testing.gradle')
 
     java {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
     }
 
     def publishBuild = Boolean.parseBoolean(findProperty('publishBuild') ?: 'false')
@@ -233,7 +233,7 @@ subprojects {
 		// It would be good to have more coverage, but this allows us to move forward with incomplete docs
                 options.addBooleanOption('Xdoclint:none', true)
 
-                options.addStringOption('source', '17')
+                options.addStringOption('source', '21')
                 options.with {
                     overview "src/main/javadoc/overview.html"
 
@@ -258,7 +258,7 @@ subprojects {
                 options.incremental = true
 
                 //target byte-code compatibility with Java 17 (regardless of build JDK)
-                options.release = 17
+                options.release = 21
             }
         }
     }
@@ -342,8 +342,8 @@ clean.doLast {
 
 apply from: 'gradle/sphinx.gradle'
 
-if (!JavaVersion.current().isCompatibleWith(JavaVersion.VERSION_17)) {
-    throw new Exception("Java 17 is required to build fdb-record-layer")
+if (!JavaVersion.current().isCompatibleWith(JavaVersion.VERSION_21)) {
+    throw new Exception("Java 21 is required to build fdb-record-layer")
 }
 
 // fdb-environment.properties is the old way we configured the library path and cluster file, it does not scale well
