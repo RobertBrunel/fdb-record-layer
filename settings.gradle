@@ -38,6 +38,7 @@ include 'fdb-relational-jdbc'
 include 'fdb-relational-server'
 include 'yaml-tests'
 include 'examples'
+include 'simd-benchmarks'
 
 // It's confusing to have dozens of files called build.gradle scattered around the project
 // The following renames these the <project-name>.gradle following the same convention established
