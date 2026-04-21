@@ -245,13 +245,9 @@ class OnlineIndexerMutualTest extends OnlineIndexerTest  {
         }
         int numScanned = timer.getCount(FDBStoreTimer.Counts.ONLINE_INDEX_BUILDER_RECORDS_SCANNED);
         if (callerTimer == null && LOGGER.isInfoEnabled()) {
-            // Note: `Thread#getId()` has been deprecated in JDK 19+ in favor of `Thread#threadId()`, but as long as we’re
-            // still targeting Java 11, we need to keep `getId()` and suppress the deprecation warning.
-            @SuppressWarnings("deprecation") final long tid = Thread.currentThread().getId();
-
             LOGGER.info(KeyValueLogMessage.of("oneThreadIndexing",
                     LogMessageKeys.RECORDS_SCANNED, numScanned,
-                    "tid", tid
+                    "tid", Thread.currentThread().getId()
             ));
         }
         return numScanned;
