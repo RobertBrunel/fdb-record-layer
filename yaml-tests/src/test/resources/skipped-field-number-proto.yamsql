@@ -24,7 +24,7 @@
 
 ---
 options:
-  supported_version: !current_version
+  supported_version: 4.12.2.0
 ---
 setup:
   connect: "jdbc:embed:/__SYS?schema=CATALOG"
